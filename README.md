@@ -5,10 +5,10 @@
 
 ## Steps in Pipeline:
 1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
-2. [Event on S3 bucket to trigger step function state machine](README.md#Dataset)
-3. [step function state machine launches fargate task](README.md#File-Descriptions)
-4. [fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket](README.md#LSUN)
-5. [Glue Service (run on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables](README.md#Plugin)
+2. [Event on S3 bucket to trigger step function state machine]
+3. [step function state machine launches fargate task]
+4. [fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket]
+5. [Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables]
 
 ## Other considerataions:
 
