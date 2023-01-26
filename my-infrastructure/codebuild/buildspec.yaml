@@ -1,0 +1,26 @@
+
+version: 0.2
+
+env:
+  image_name: my-image #whatever we want to name image
+  region: us-west-2
+  ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region ${env:region})
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t ${env:image_name}:latest .
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image to Amazon ECR...
+      - docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
+      - docker push ${env:ecr_repository_uri}
+
+

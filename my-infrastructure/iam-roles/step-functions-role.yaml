@@ -1,0 +1,47 @@
+# step-functions-role.yaml
+Resources:
+  MyIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: my-step-functions-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          ForAnyValue:StringLike:
+            aws:PrincipalArn: "arn:aws:iam::*:user/*"
+      Policies:
+        - PolicyName: states-policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:user/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:role/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:assumed-role/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:service-role/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:saml-provider/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:oidc-provider/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:federated-user/*"
+            Statement:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:account/*"
+            Condition:
+              ForAnyValue:StringLike:
+                aws:PrincipalArn: "arn:aws:iam::*:root"
+            Statements:
+              - Effect: "Allow"
+                Action:
+                  - "states:*"
+                Resource: "*"

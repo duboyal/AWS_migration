@@ -1,0 +1,29 @@
+Resources:
+  MyFargateTask:
+      Type: AWS::ECS::TaskDefinition
+      Properties: # i think i need to figure this out more
+        ContainerDefinitions:
+          - Name: my-batch-processing-container #need to configure the image and container
+            Image: my-batch-processing-image  # all environment vars !! then put things at top
+            Memory: 512
+            Cpu: 256
+
+            #important here set environment variables
+            Environment:
+              - Name: RAW_S3_BUCKET #you will reference these environment variables in your python code
+                Value: raw_bucket
+              - Name: RAW_S3_OBJECT_KEY
+                Value: data_engineer_raw_data.xlsx" # excels
+
+              - Name: TRANSFORMED_S3_BUCKET
+                Value: transformed_bucket
+              - Name: TRANSFORMED_S3_OBJECT_KEY
+                Value: "/" # parquets
+
+  MyFargateService:
+    Type: AWS::ECS::Service
+    Properties:
+      TaskDefinition: !Ref MyFargateTask
+      Cluster: my-cluster
+      DesiredCount: 1
+      LaunchType: "FARGATE"

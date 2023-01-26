@@ -1,0 +1,79 @@
+# ok so theres roles and policy
+# Resources:
+#    GlueCrawlerS3AccessPolicy:
+#     Type: AWS::IAM::Policy
+#     Properties:
+#       PolicyName: GlueCrawlerS3Access
+#       PolicyDocument:
+#         Version: '2012-10-17'
+#         Statement:
+#           StringEquals:
+#             s3:prefix: s3://my-bucket/
+#             s3:delimiter: /
+#         Statement:
+#           StringLike:
+#             s3:prefix: s3://my-bucket/*
+#         Statement:
+#           StringLike:
+#             s3:prefix: s3://my-bucket/datasync/*
+#       Roles:
+#         - !Ref MyGlueCrawlerRole
+#####
+env:
+  pass : pass
+  
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-bucket
+      
+  MyGlueCrawlerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          StringEquals:
+            aws:SourceArn: arn:aws:glue:us-west-2:account-id:crawler/my-crawler
+      Path: /
+      Policies:
+        - PolicyName: GlueCrawlerS3Access # this is inline
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              StringEquals:
+                s3:prefix: s3://my-bucket/
+                s3:delimiter: /
+            Statement:
+              StringLike:
+                s3:prefix: s3://my-bucket/*
+            Condition:
+              StringLike:
+                s3:prefix: s3://my-bucket/datasync/*
+            Statement:
+              StringLike:
+                s3:prefix: s3://my-bucket/datasync/*
+            Statement:
+              StringLike:
+                s3:prefix: s3://my-bucket/datasync/*
+            Statement:
+              StringLike:
+                s3:prefix: s3://my-bucket/datasync/*
+            Effect: Allow
+            Action:
+              - s3:ListBucket
+              - s3:GetObject
+              - s3:GetObjectAcl
+            Resource: "*"
+  MyGlueCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: my-crawler
+      Role: !Ref MyGlueCrawlerRole
+      DatabaseName: mydatabase
+      Targets:
+        S3Targets:
+        - Path: s3://my-bucket
+      SchemaChangeDetectionPolicy:
+        PolicyInclude: all

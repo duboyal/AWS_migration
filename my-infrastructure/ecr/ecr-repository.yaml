@@ -1,0 +1,10 @@
+env:
+  repository_name : my-repository
+
+Resources:  
+  MyECRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName:${env:repository_name}
+      # this shoulld be named whatever we want to name it
+      # and it should be dynamic from above 

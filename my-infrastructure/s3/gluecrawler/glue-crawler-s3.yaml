@@ -1,0 +1,36 @@
+env:
+  crawler_name: transformed-crawler #whatever we want to name image
+  transformed_bucket: transformed_bucket
+  database_name: mydatabase
+  transformed_bucket_path: s3://transformed_bucket
+  # region: us-west-2
+  # ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
+
+#--region ${env:region}
+#docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
+
+
+Resources:
+  TransformedS3Bucket: #bucket  to crawl
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ${env:transformed_bucket}
+
+  # needs to put this s3 bucket in the other yaml?
+  # right now we haave the s3 and the crawler that references it 
+  # so i could maake a new bucket 
+
+  MyGlueCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: ${env:crawler_name}
+      Role: MyGlueCrawlerRole
+      DatabaseName: ${env:database_name}
+      Targets:
+        S3Targets:
+        - Path: ${env:transformed_bucket_path}
+      SchemaChangeDetectionPolicy:
+        PolicyInclude: all
+
+
+# maybe see if its parameters or if env: is ok

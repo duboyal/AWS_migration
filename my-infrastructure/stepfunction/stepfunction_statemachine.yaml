@@ -1,0 +1,25 @@
+Resources:
+  MyStepFunctionsStateMachine:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      DefinitionString: !Sub |
+        {
+          "StartAt": "DownloadDataFromS3",
+          "States": {
+            "DownloadDataFromS3": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::s3:getObject",
+              "End": true
+            },
+            "ProcessData": {
+              "Type": "Task",
+              "Resource": {"Fn::GetAtt": ["MyFargateTask", "Arn"]},
+              "End": true
+            },
+            "UploadDataToS3": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::s3:putObject",
+              "End": true
+            }
+          }
+        }

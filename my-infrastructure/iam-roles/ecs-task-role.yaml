@@ -1,0 +1,28 @@
+#needs help as shit 
+env:
+  pass : pass
+  
+Resources:
+  ECSTaskRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: "ecs-task-role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          StringEquals:
+            sts:ExternalId: !Ref ExternalId
+        Statement:
+          StringLike:
+            sts:ExternalId: !Ref ExternalId
+      Path: "/"
+      Policies:
+        - PolicyName: "ecs-task-policy" #i think this is inline
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              StringLike:
+                sts:ExternalId: !Ref ExternalId
+            Condition:
+              StringEquals:
+                sts:ExternalId: !Ref ExternalId

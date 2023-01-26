@@ -1,0 +1,36 @@
+# big question is how to access the AWS variables 
+
+env:
+  image_name: my-image #whatever we want to name image
+  docker_filepath  : "codebuild/Dockerfile"
+  environment_type  : "LINUX_CONTAINER"
+  environment_image  : "aws/codebuild/docker:18.09"
+  # region: us-west-2
+  # ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
+
+#--region ${env:region}
+#docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
+
+Resources:
+  CodeBuildProject:
+    Type: "AWS::CodeBuild::Project"
+    Properties:
+      Name: "MyCodeBuildProject"
+      BuildSpec: !Sub |
+        ${codebuild.buildspec}
+      Artifacts:
+        Type: "CODEPIPELINE"
+      Environment:
+        Type: ${env:environment_type}
+        Image: ${env:environment_image}
+        EnvironmentVariables:
+          - Name: "DOCKERFILE_PATH"
+            Value: ${env:docker_filepath} # corresponds to path from final yaml template (global bc codefile)
+      ServiceRole: !Ref CodeBuildServiceRole
+      # ServiceRole: !GetAtt CodeBuildServiceRole.Arn #from ServiceRole: !Ref CodeBuildServiceRole
+
+
+
+      # contract : 
+      # python backend API flask RESTful/graphQL with ariadne library pstgresSQL
+      # helped provision AWS pipeline from scratch using infrrasstructure as code 

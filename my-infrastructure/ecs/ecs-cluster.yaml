@@ -1,0 +1,22 @@
+env:
+  pass : pass
+
+Resources:
+  ECSCluster:
+    Type: "AWS::ECS::Cluster"
+    Properties:
+      ClusterName: "my-cluster"
+
+Outputs:
+  ECSClusterName:
+    Value: !Ref ECSCluster
+    Export:
+      Name: ECSClusterName
+
+
+# This CloudFormation template creates an Amazon Elastic Container Service (ECS) cluster with the name "my-cluster" and exports 
+# the cluster name as an output value named "ECSClusterName".
+# The ECSCluster resource is defined using the AWS::ECS::Cluster type, 
+# and it has a single property called ClusterName which is set to "my-cluster".
+# This output value can be imported and used by other CloudFormation stacks or templates.
+

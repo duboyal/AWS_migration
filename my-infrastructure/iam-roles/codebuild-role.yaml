@@ -1,0 +1,50 @@
+env:
+  pass : pass
+
+
+Resources:
+  CodeBuildServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: CodeBuildServiceRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: CodeBuildAccess #inline policy so do not need to make Type: AWS::IAM::Policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ecr:GetAuthorizationToken
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:GetDownloadUrlForLayer
+                  - ecr:BatchGetImage
+                Resource: "*"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:ListBucket
+                Resource: "arn:aws:s3:::my-bucket/*"
+
+# Correct, you don't need to create a separate resource of type AWS::IAM::Policy 
+# in the CloudFormation template if you are using an inline policy.
+
+# An inline policy is a policy that is embedded in the CloudFormation template and it's 
+# created along with the IAM role. This way you can define the permissions directly in the CloudFormation 
+# template and the role will be created with those permissions.
+
+# It's also more manageable to keep the policy with the role since both are related to the Glue Crawler.
+
+# You can also reference an existing managed policy by specifying the ARN of the policy instead of
+#  PolicyDocument in the role resource.
+
+# Using an inline policy eliminates the need to create a separate resource for the policy, and it 
+# also eliminates the need to manage the policy separately from the role.
