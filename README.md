@@ -4,7 +4,7 @@
 #### disclaimer : testing was limited for this pipeline and is mainly just an overall big picture of a potentially deployable self contained infrastructure as code , even the dockerfile and container registry is mocked up in theory to be pushed as IaC yaml , by potentially terraform/serverless framewwork etc.
 
 ## Steps in Pipeline:
-1. [AWS Data Sync to "Raw" S3 Bucket](README.md#problem)
+1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
 2. [Event on S3 bucket to trigger step function state machine](README.md#Dataset)
 3. [step function state machine launches fargate task](README.md#File-Descriptions)
 4. [fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket](README.md#LSUN)
@@ -21,9 +21,9 @@ I would set up an s3 bucket that could take files and send batches of rows from 
 
 
 
-## Problem:
+## DataSync:
 
-
+jhgkjhgkjh
 
 ## Dataset:
 
