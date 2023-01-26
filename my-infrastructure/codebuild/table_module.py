@@ -150,8 +150,7 @@ def aggregate_df(df_new,df_parquet ):
     '''
     this function will compare two dfs , one that gets lloaded in 
     and one thats incoming. it will take the difference and will update accordingly 
-    I think if it is there in the old one and not in the new one then it should 
-    delete from the new one 
+    but just add new rows and update
     '''
     df = pd.concat([df_new,df_parquet])
     mask = df.duplicated(subset=['A', 'B','C'], keep=False)
