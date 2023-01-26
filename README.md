@@ -25,14 +25,6 @@ I would set up an s3 bucket that could take files and send batches of rows from 
 
 jhgkjhgkjh
 
-## Dataset:
-
-The datasets website and information:
-http://lsun.cs.princeton.edu/2017/
-
-Instructions on how to download the dataset:
-https://github.com/fyu/lsun
-
 
 
 ## General Structure:
@@ -73,15 +65,3 @@ The directory structure for your repo should look like this:
       
 ```
       
-
-# File Descriptions: 
-## ./
-### ./ActivationVisualization.ipynb
-This is a nice visulaization of performing t-sne (similar to Principal component analysis) to see how well the model is able to seperate out the different classes. This is also very integral in showing us how likely the user is to pick up other 'classes' when trying to only select one class. in this case we encourage the user to select a small amount of classes at once when they are "lassoing" images
-
-## LSUN/
-### LSUN/utils/LSUNDataloader.py
-This file defines the dataloader class, has class variable of a list of csvs saved, then has the get item attribute for a single image at once based on index, where the batch size is a variable defined in the code found in Baseline_vs_meta.ipynb, in which case the data loader would execute "get_item" that determined number of times.
-
-### LSUN/Baseline_vs_meta.ipynb
-This file is where the main network training happens and also communicates with the data loader. 
