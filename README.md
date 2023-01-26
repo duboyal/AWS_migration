@@ -10,6 +10,9 @@
 4. fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket
 5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables
 
+#### data processing code :
+should be found within the "codebuild" folder under main.py, and table_module imported into that. In that directory you'll also find the docker file which runs main and reads in the input file name as one of its environment variables that is defined in the fargate task IaC yaml files 
+
 ## Other considerataions:
 
 Thought about use of lambda , but lambda's limitations are that it will time out after 15 minutes and also cannot hold pandas library without implementing lambda layers. In retrospect I could have used SQS or lambda to trigger the fargate task instead of state functions, I chose state fucntions because you seem to have more control
