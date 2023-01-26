@@ -10,8 +10,10 @@
 4. fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket
 5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables
 
-#### data processing code :
-should be found within the "codebuild" folder under main.py, and table_module imported into that. In that directory you'll also find the docker file which runs main and reads in the input file name as one of its environment variables that is defined in the fargate task IaC yaml files 
+#### data processing code : main.py
+should be found within the "codebuild" folder under main.py, and table_module imported into that. In that directory you'll also find the docker file which runs main and reads in the input file name as one of its environment variables that is defined in the fargate task IaC yaml files . 
+
+parquet files are my chosen filetype to to save things to because they are good if multiple actions or functions need to read/write to the file at once it is safer against data corruption , perhaps not in this pipeline but in alternate more scalable pipelines that implement fanning out lambda functions 
 
 ## Other considerataions:
 
