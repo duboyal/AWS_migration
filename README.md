@@ -5,10 +5,10 @@
 
 ## Steps in Pipeline:
 1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
-2. [Event on S3 bucket to trigger step function state machine]
-3. [step function state machine launches fargate task]
-4. [fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket]
-5. [Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables]
+2. Event on S3 bucket to trigger step function state machine
+3. step function state machine launches fargate task
+4. fargate task proccesses and updates data and saves to parquet files in "Transformed" S3 Bucket
+5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables
 
 ## Other considerataions:
 
@@ -23,45 +23,7 @@ I would set up an s3 bucket that could take files and send batches of rows from 
 
 ## DataSync:
 
-jhgkjhgkjh
+Data sync would require the installation of a "data sync agent" on the source machine and have access to the destination s3 bucket through VPN or make your bucket public but it is more secure to configure the allowwwed traffic into the bucket through VPN
+[https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html]
 
 
-
-## General Structure:
-
-The directory structure for your repo should look like this:
-```
-      ├── LSUN
-      │     └──.ipynb_checkpoints
-      │     └──utils
-      │     │   └──LSUNDataloader.py
-      │     └──Baseline_vs_meta.ipynb
-      │     └──ConvertToTar.ipynb
-      │     └──Dummy.ipynb
-      │     └──ExperimentLog.csv
-      │     └──LSUNGetTrainValFiles.ipynb
-      │     └──LSUNResultsVisualization.ipynb
-      │     └──PreprocessingLSUN.ipynb
-      │     └──QueryDatastore.py
-      │     └──Results_LSUN.csv
-      ├── Plugin 
-      │     └──content.js
-      │     └──jquery-3.3.1.min.js	
-      │     └──manifest.json
-      │     └──popup.html
-      │     └──popup.js
-      │     └──script_deselect.php
-      │     └──script_lasso.php
-      ├── Plugin2
-      │     └──content.js
-      │     └──jquery-3.3.1.min.js	
-      │     └──manifest.json
-      │     └──popup.html
-      │     └──popup.js
-      │     └──script_deselect.php
-      │     └──script_lasso.php
-      ├── ActivationVisualization.ipynb
-      ├── README.md 
-      
-```
-      
