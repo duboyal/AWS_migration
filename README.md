@@ -31,7 +31,7 @@ I am also interested into looking at AWS Batch that natively integrates with S3,
 
 ## DataSync:
 
-Data sync would require the installation of a "data sync agent" on the source machine and have access to the destination s3 bucket through VPN or make your bucket public but it is more secure to configure the allowwwed traffic into the bucket through VPN
+Data sync would require the installation of a "data sync agent" on the source machine and have access to the destination s3 bucket through VPN or make your bucket public but it is more secure to configure the allowed traffic into the bucket through VPN
 [https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html]
 
 
