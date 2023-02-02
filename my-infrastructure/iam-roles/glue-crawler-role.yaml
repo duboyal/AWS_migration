@@ -1,24 +1,3 @@
-# ok so theres roles and policy
-# Resources:
-#    GlueCrawlerS3AccessPolicy:
-#     Type: AWS::IAM::Policy
-#     Properties:
-#       PolicyName: GlueCrawlerS3Access
-#       PolicyDocument:
-#         Version: '2012-10-17'
-#         Statement:
-#           StringEquals:
-#             s3:prefix: s3://my-bucket/
-#             s3:delimiter: /
-#         Statement:
-#           StringLike:
-#             s3:prefix: s3://my-bucket/*
-#         Statement:
-#           StringLike:
-#             s3:prefix: s3://my-bucket/datasync/*
-#       Roles:
-#         - !Ref MyGlueCrawlerRole
-#####
 env:
   pass : pass
   
@@ -41,20 +20,14 @@ Resources:
         - PolicyName: GlueCrawlerS3Access # this is inline
           PolicyDocument:
             Version: "2012-10-17"
-            Statement:
-              StringEquals:
-                s3:prefix: s3://my-bucket/
-                s3:delimiter: /
+#             Statement:
+#               StringEquals:
+#                 s3:prefix: s3://my-bucket/
+#                 s3:delimiter: /
             Statement:
               StringLike:
                 s3:prefix: s3://my-bucket/*
             Condition:
-              StringLike:
-                s3:prefix: s3://my-bucket/datasync/*
-            Statement:
-              StringLike:
-                s3:prefix: s3://my-bucket/datasync/*
-            Statement:
               StringLike:
                 s3:prefix: s3://my-bucket/datasync/*
             Statement:
