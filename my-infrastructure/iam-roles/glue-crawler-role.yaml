@@ -1,5 +1,6 @@
 env:
   my_bucket : my_bucket
+  my_crawler : my_crawler
   
 Resources:
   MyS3Bucket:
@@ -14,7 +15,7 @@ Resources:
         Version: "2012-10-17"
         Statement:
           StringEquals:
-            aws:SourceArn: arn:aws:glue:us-west-2:account-id:crawler/my-crawler
+            aws:SourceArn: arn:aws:glue:us-west-2:account-id:crawler/${env:my_crawler}
       Path: /
       Policies:
         - PolicyName: GlueCrawlerS3Access # this is inline
