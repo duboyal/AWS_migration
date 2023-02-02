@@ -20,7 +20,7 @@ parquet files are my chosen filetype to to save things to because they are good 
 Thought about use of lambda , but lambda's limitations are that it will time out after 15 minutes and also cannot hold pandas library without implementing lambda layers. In retrospect I could have used SQS or lambda to trigger the fargate task instead of state functions, I chose state fucntions because you seem to have more control
 
 #### thoughts on scalability:
-If I really needed to "scale up" I would do the following, though it would have taken me too long to figure this out and provision for this exercise but here is what I would do .
+If I really needed to "scale up" I would do the following, though it would have taken me too long to configure this and provision for this exercise but here is what I would do .
 
 I would set up an s3 bucket that could take files and send batches of rows from the files to SQS queue events that would then send their respective "batches" to an instance of lamda fucnction (or lambda handler) to conduct the transforming the data. all these instances would save to a parquet file to a "transformed" s3 bucket that has a glue crawler attached to it where the glue crawler would be set up to read data from multiple files within the transformed s3 bucket . the file format of parquet is especially useful here because it is the safest for when multiple functions need to add to a file at once .
 
