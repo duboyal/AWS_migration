@@ -34,7 +34,8 @@ Resources:
                   - s3:ListBucket
                 Resource: "arn:aws:s3:::my-bucket/*"
 
-# Correct, you don't need to create a separate resource of type AWS::IAM::Policy 
+
+# you don't need to create a separate resource of type AWS::IAM::Policy 
 # in the CloudFormation template if you are using an inline policy.
 
 # An inline policy is a policy that is embedded in the CloudFormation template and it's 
