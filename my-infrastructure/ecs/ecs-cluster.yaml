@@ -1,11 +1,11 @@
 env:
-  pass : pass
+  cluster_name : cluster_name
 
 Resources:
   ECSCluster:
     Type: "AWS::ECS::Cluster"
     Properties:
-      ClusterName: "my-cluster"
+      ClusterName: ${env:cluster_name}
 
 Outputs:
   ECSClusterName:
