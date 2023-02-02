@@ -1,6 +1,5 @@
-#needs help as shit 
-env:
-  pass : pass
+# env:
+#   pass : pass
   
 Resources:
   ECSTaskRole:
