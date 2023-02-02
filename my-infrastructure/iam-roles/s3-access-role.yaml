@@ -1,6 +1,6 @@
 
 env:
-  pass : pass
+  version : '2012-10-17'
 
 Resources:
   MyS3AccessRole:
@@ -8,21 +8,15 @@ Resources:
     Properties:
       RoleName: 'MyS3AccessRole'
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: ${env:version}
         Statement:
           StringEquals:
             sts:ExternalId: !Ref "AWS::AccountId"
       Policies:
-        - PolicyName: 'MyS3AccessPolicy' # i think this is inline
+        - PolicyName: 'MyS3AccessPolicy' # this is inline
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: ${env:version}
             Statement:
               StringEquals:
                 sts:ExternalId: !Ref "AWS::AccountId"
 
-# only thing is we need to make a second s3 bucket so im wowndeirng if we need a second access role for 
-# ask about statement string equals thats weird                
-
-
-# ok so "AWS::AccountId" might be a thing
-# there may be more like this and maybe they can be passed as variables?
