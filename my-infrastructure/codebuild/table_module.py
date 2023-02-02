@@ -19,7 +19,7 @@ object_key = env["OBJECT_KEY"]
 def create_seperate_dfs( df_bor , df_rp ): #, created_at, created_by): 
     '''
     takes in dataframes, returns a dict of dataframes
-    MAKE IT RETURN A DICT of 9 DFS from our EXCEL DFS 
+    returns A DICT of 9 DFS from our EXCEL DFS 
     df_user_profile, df_user, df_role_profile, df_role_profile_type, df_email, df_email_type, df_address, df_phone_number, df_phone_number_type
     makes dfs from the imported xlsx files 
     takes in two dataframes and returns dict of seperate data frames
