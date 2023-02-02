@@ -48,7 +48,7 @@ sheet_name_rp = env["SHEETNAME_2"] #"role_profile"
 df_bor = wr.s3.read_excel(path=f's3://{raw_bucket}/{raw_object_key}', sheet_name=sheet_name_bor)
 df_rp = wr.s3.read_excel(path=f's3://{raw_bucket}/{raw_object_key}', sheet_name=sheet_name_rp)
 
-new_df_dict = tm.create_seperate_dfs(df_bor, df_rp) #maybe make them key word args to be explicit
+new_df_dict = tm.create_seperate_dfs(df_bor, df_rp) # I should make them key word args to be explicit
 
 
 prefix = '' #env["PREFIX"]
