@@ -21,9 +21,9 @@ parquet files are my chosen filetype to to save things to because they are good 
 I thought about the use of lambda , but lambda's limitations are that it will time out after 15 minutes and also cannot hold pandas library without implementing lambda layers. In retrospect I could have used SQS or lambda to trigger the fargate task instead of state functions, I chose state fucntions because you seem to have more control over the flow of the job, and will have more options to handle errors and retries.
 
 #### thoughts on scalability:
-If I really needed to "scale up" I would do the following, (it would take a while to configure and provision for this exercise but here is what I would do)
+If I really needed to "scale up" I would do the following, (it would take a while to configure and provision for the scope exercise but here is what I would do)
 
-I would set up an s3 bucket that could take files and send rows from the csv over in "batches" (like 10 rows would be a batch) from the files to SQS queue events. I would design a python class framework extract these batches from the csv file , ( say 10 lines from a csv would be a batch of size 10 and this number could be dynamic)
+I would set up an event-triggered s3 bucket that would take files and (lambda python code) would send rows from the csv over in "batches" (like 10 rows would be a batch) from the files to SQS queue events. I would design a python class framework extract these batches from the csv file , ( say 10 lines from a csv would be a batch of size 10 - this number could be dynamic)
 
 that would then send these "batches" to an instance of lamda fucnction (or lambda handler) to conduct the transforming the data. these sqs events would spin up lambdas for processing and All these lambda instances would save to a parquet file to a "transformed" s3 bucket that has a glue crawler attached to it where the glue crawler would be set up to read data from multiple files within the transformed s3 bucket . the file format of parquet is especially useful here because it is the safest for when multiple functions need to add to a file at once .
 
