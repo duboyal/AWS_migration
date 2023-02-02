@@ -1,5 +1,5 @@
 env:
-  pass : pass
+  my_bucket : my_bucket
   
 Resources:
   MyS3Bucket:
@@ -20,19 +20,11 @@ Resources:
         - PolicyName: GlueCrawlerS3Access # this is inline
           PolicyDocument:
             Version: "2012-10-17"
-#             Statement:
-#               StringEquals:
-#                 s3:prefix: s3://my-bucket/
-#                 s3:delimiter: /
+
             Statement:
               StringLike:
-                s3:prefix: s3://my-bucket/*
-            Condition:
-              StringLike:
-                s3:prefix: s3://my-bucket/datasync/*
-            Statement:
-              StringLike:
-                s3:prefix: s3://my-bucket/datasync/*
+                s3:prefix: s3://${env:my_bucket}/*
+
             Effect: Allow
             Action:
               - s3:ListBucket
@@ -47,6 +39,6 @@ Resources:
       DatabaseName: mydatabase
       Targets:
         S3Targets:
-        - Path: s3://my-bucket
+        - Path: s3://${env:my_bucket}
       SchemaChangeDetectionPolicy:
         PolicyInclude: all
