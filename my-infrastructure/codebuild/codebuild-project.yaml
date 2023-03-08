@@ -1,4 +1,5 @@
-# big question is how to access the AWS variables 
+# how to link up the AWS variables they get defined in docker and through the account info when you link up serverless
+# also in serverless.yaml
 
 env:
   image_name: my-image #whatever we want to name image
