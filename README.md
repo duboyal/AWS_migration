@@ -21,8 +21,10 @@
 │   │   ├── s3-access-role.yaml
 │   │   └── step-functions-role.yaml
 │   ├── s3
-│   │   ├── datasync-task.yaml
-│   │   └── glue-crawler-s3.yaml
+│   │   ├── raw
+│   │   │   └── datasync-task-s3.yaml
+│   │   └── transformed
+│   │   │   └── glue-crawler-s3.yaml
 │   ├── stepfunction
 │   │   └── stepfunction_statemachine.yaml
 │   ├── network
