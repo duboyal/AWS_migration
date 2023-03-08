@@ -39,12 +39,13 @@
 #### disclaimer : testing was limited for this pipeline and is mainly just an overall big picture of a potentially deployable self contained infrastructure as code , even the dockerfile and container registry is mocked up in theory to be pushed as IaC yaml , by potentially terraform/serverless framework etc. I have deployed similar stacks - using AWS CloudFormation or AWS CDK to deploy the infrastructure in a test environment first, and then gradually adding more resources as I go.
 
 ## Steps in Pipeline:
-1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
-2. [Event on S3 bucket](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/raw/datasync-task-s3.yaml) to trigger [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/stepfunction/stepfunction_statemachine.yaml)
+#### 1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
+#### 2. [Event on S3 bucket](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/raw/datasync-task-s3.yaml) to trigger [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/stepfunction/stepfunction_statemachine.yaml) 
+When an S3 bucket receives an object, it can trigger an S3 event notification. However, this event notification alone cannot directly trigger a Fargate task. Instead, you can create a Step Function that listens to the S3 event notification and then triggers the Fargate task. This way, the Step Function acts as an intermediary that can coordinate multiple AWS services to accomplish the desired outcome.
 
-3. [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/stepfunction/stepfunction_statemachine.yaml) launches fargate task (python data-processing code is on the docker container used for fargate task - we have IaC to create/launch this ecr/container from scratch via [buildspec.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/buildspec.yaml) and [codebuild-project.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/codebuild-project.yaml)
-4. fargate task proccesses and updates data and saves induvidual parquet files in "Transformed" S3 Bucket
-5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables from each parquet file. schema meta data is saved 
+#### 3. [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/stepfunction/stepfunction_statemachine.yaml) launches fargate task (python data-processing code is on the docker container used for fargate task - we have IaC to create/launch this ecr/container from scratch via [buildspec.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/buildspec.yaml) and [codebuild-project.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/codebuild-project.yaml)
+#### 4. fargate task proccesses and updates data and saves induvidual parquet files in "Transformed" S3 Bucket
+#### 5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables from each parquet file. schema meta data is saved 
 
 #### data processing code : [main.py](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/main.py) which imports [table_module.py](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/table_module.py)
 
