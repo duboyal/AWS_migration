@@ -24,8 +24,8 @@ Resources:
       SchemaChangeDetectionPolicy:
         PolicyInclude: all
 
-# The glue-crawler-s3.yml file appears to define a CloudFormation resource for an AWS Glue crawler that crawls an 
-#S3 bucket and creates an AWS Glue table based on the discovered schema. Here's an overview of the main sections of the file:
+# The glue-crawler-s3.yml file defines a CloudFormation resource for an AWS Glue crawler that crawls an 
+# S3 bucket and creates an AWS Glue table based on the discovered schema. Here's an overview of the main sections of the file:
 
 # env: This section defines environment variables that can be referenced elsewhere in the CloudFormation stack. These variables 
 # specify the name of the Glue crawler, the name of the database where the table will be created, the S3 bucket name where the 
