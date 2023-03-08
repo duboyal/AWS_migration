@@ -32,3 +32,29 @@ Resources:
       Cluster: ${env:cluster} 
       DesiredCount: 1
       LaunchType: "FARGATE"
+
+
+# env: This section contains environment variables that are referenced within the CloudFormation stack.
+
+# batch_processing_container: This environment variable is the name of the container that will run the batch processing task.
+
+# batch_processing_image: This environment variable is the Docker image that the container will use for the batch processing task.
+
+# cluster: This environment variable is the name of the ECS cluster where the task will be deployed.
+
+# MyFargateTask: This section defines the ECS task definition that the Fargate service will use. It includes the following properties:
+
+# ContainerDefinitions: This property specifies the configuration for the container that will run the batch processing task. It includes the following properties:
+# Name: This property specifies the name of the container. It is set to the value of the batch_processing_container environment variable.
+# Image: This property specifies the Docker image that the container will use. It is set to the value of the batch_processing_image environment variable.
+# Memory: This property specifies the amount of memory (in MiB) to allocate to the container.
+# Cpu: This property specifies the amount of CPU units to allocate to the container.
+# Environment: This property specifies environment variables that will be available to the container. It includes the following properties:
+# Name: This property specifies the name of the environment variable.
+# Value: This property specifies the value of the environment variable.
+# MyFargateService: This section defines the ECS service that will run the Fargate task. It includes the following properties:
+
+# TaskDefinition: This property specifies the ARN of the ECS task definition to use for the service. It is set to the MyFargateTask resource.
+# Cluster: This property specifies the name of the ECS cluster where the service will be deployed. It is set to the value of the cluster environment variable.
+# DesiredCount: This property specifies the number of tasks to run in the service.
+# LaunchType: This property specifies the launch type for the tasks in the service. In this case, it is set to "FARGATE".
