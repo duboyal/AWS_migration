@@ -56,3 +56,9 @@ Resources:
 # Overall the Step Function state machine YAML file defines a simple state machine that downloads data from an S3 bucket, processes the data using a Fargate task, and uploads the processed data back to another S3 bucket.
 
 
+#--------
+# In the DownloadDataFromS3 state, the state machine is downloading data from an S3 bucket, which means you would need to use the getObject API to retrieve the data from the bucket.
+
+# In the UploadDataToS3 state, the state machine is uploading data to an S3 bucket, which means you would need to use the putObject API to store the data in the bucket.
+
+# So in summary, getObject and putObject represent different operations that you can perform on an S3 bucket, depending on whether you want to download or upload data.
