@@ -1,0 +1,24 @@
+Resources:
+  MyInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties: {}
+
+Outputs:
+  MyInternetGatewayId:
+    Value: !Ref MyInternetGateway
+    Export:
+      Name: MyInternetGatewayId
+
+# This YAML file creates an Internet Gateway resource in AWS CloudFormation using the AWS::EC2::InternetGateway resource type. 
+
+# An Internet Gateway is a horizontally scalable, redundant, and highly available VPC component that allows communication 
+# between instances in your VPC and the internet.
+
+# The Internet Gateway resource is created with a logical ID of "MyInternetGateway", and it has no properties defined, so it is
+# made with the default settings.
+
+# The output section of the file exports the logical ID of the Internet Gateway as a named export, so it can be referenced in 
+# other templates or stacks. The output value is the Amazon Resource Name (ARN) of the Internet Gateway resource.
+
+# Overall, this YAML file can be used to easily create an Internet Gateway resource that can be used to provide access 
+# to and from your VPC.
