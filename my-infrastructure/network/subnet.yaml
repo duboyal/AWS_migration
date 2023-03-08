@@ -1,9 +1,9 @@
 # When you create a VPC, it's common to create subnets in multiple availability zones for high availability and fault tolerance.
-
 # Public subnets are typically used for resources that need to be publicly accessible from the internet, such as web servers or APIs. Private subnets, 
 # on the other hand, are used for resources that don't need to be publicly accessible, such as databases or internal services.
 
-# In the context of a data processing pipeline like the one you described, you might use public subnets for resources that need to be publicly accessible, 
+# In the context of this data processing pipeline , we would use public subnets for resources that need to be publicly accessible, 
+
 # such as an AWS DataSync agent or an ECS service that exposes an API. Private subnets might be used for resources that don't need to be publicly accessible,
 # such as an ECS cluster that runs data processing tasks or a database that stores processed data.
 
