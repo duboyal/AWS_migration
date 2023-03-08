@@ -30,7 +30,10 @@ Resources:
       # ServiceRole: !GetAtt CodeBuildServiceRole.Arn #from ServiceRole: !Ref CodeBuildServiceRole
 
 
+# This YAML file is a CloudFormation template for creating an AWS CodeBuild project. CodeBuild is a fully managed build service that compiles source code, runs tests, and produces software packages that are ready to deploy.
 
-      # contract : 
-      # python backend API flask RESTful/graphQL with ariadne library pstgresSQL
-      # helped provision AWS pipeline from scratch using infrrasstructure as code 
+# In this file, the env section defines environment variables that can be used in other parts of the file. For example, image_name sets the name of the Docker image that will be built.
+
+# The Resources section defines the CodeBuild project using the AWS::CodeBuild::Project resource type. The Name property sets the name of the project, and the BuildSpec property references a build specification file that defines how to build the Docker image. The Artifacts property specifies the type of artifacts that the project produces, and the Environment property specifies the type of environment to use for the build.
+
+# The ServiceRole property references a service role that defines the permissions that the project has to access other AWS resources.
