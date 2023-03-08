@@ -6,6 +6,7 @@
 
 # such as an AWS DataSync agent or an ECS service that exposes an API. Private subnets might be used for resources that don't need to be publicly accessible,
 # such as an ECS cluster that runs data processing tasks or a database that stores processed data.
+
 # Yes - The ECS service that exposes an API would typically be deployed in a public subnet, allowing it to be publicly 
 # accessible from the internet. On the other hand, the AWS DataSync 
 # agent would typically be deployed in a private subnet, which is not publicly accessible.
