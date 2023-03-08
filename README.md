@@ -2,7 +2,7 @@
 ```
 ├── my-infrastructure
 │   ├── codebuild
-│   │   ├── Dockerfile
+│   │   ├── [Dockerfile](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/Dockerfile)
 │   │   ├── buildspec.yaml
 │   │   ├── codebuild-project.yaml
 │   │   ├── requirements.txt
