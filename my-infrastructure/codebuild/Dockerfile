@@ -30,5 +30,6 @@ CMD ["python3", "main.py"]
 # or using an external secrets manager. This ensures that the sensitive information is not hardcoded in 
 # the Dockerfile or the container image itself, which can be a security risk.
 
-# If you are using an AWS service to run your container, such as ECS or EKS, you can also use IAM roles to 
+# If you are using an AWS service to run your container, such as ECS or EKS, 
+# you can also use IAM roles to 
 # grant the necessary permissions to your containers without having to pass in AWS credentials directly.
