@@ -6,11 +6,11 @@ env:
   docker_filepath  : "codebuild/Dockerfile"
   environment_type  : "LINUX_CONTAINER"
   environment_image  : "aws/codebuild/docker:18.09"
+  
   # region: us-west-2
   # ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
+  #docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
 
-
-#docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
 
 Resources:
   MyECRRepository:
@@ -36,6 +36,7 @@ Resources:
             Value: !Join ['', [!Ref MyECRRepository, '.dkr.ecr.', !Ref 'AWS::Region', '.amazonaws.com/', !Ref MyECRRepository]]
       ServiceRole: !Ref CodeBuildServiceRole
       # ServiceRole: !GetAtt CodeBuildServiceRole.Arn #from ServiceRole: !Ref CodeBuildServiceRole
+
 
 #-------
 # This YAML file is a CloudFormation template for creating an AWS CodeBuild project. 
