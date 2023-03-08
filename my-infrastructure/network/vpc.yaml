@@ -52,4 +52,16 @@ Resources:
 # You can do this by creating a security group rule that allows inbound traffic on port 22 (SSH) from your local IP address. 
 # This will allow you to establish an SSH connection to your instances within your VPC, which is required for AWS DataSync to transfer data to your S3 bucket.
 
-# Here's an example CloudFormation template for a security group that allows inbound traffic on port 22 from a specific IP address:
+#-----CidrBlock------
+# Classless Inter-Domain Routing, which is a method for allocating IP addresses and routing Internet Protocol packets. 
+# It's a set of IP address standards that are used to create unique identifiers for networks and individual devices on those networks.
+
+# In this specific YAML code block, CidrBlock is the property that defines the IP address range of the
+# VPC (Virtual Private Cloud) being created. The value "10.0.0.0/16" indicates that the VPC will have an 
+# IP address range of 10.0.0.0 to 10.0.255.255, with 16 bits being used for the network portion and 
+# 16 bits being used for the host portion.
+
+
+
+
+
