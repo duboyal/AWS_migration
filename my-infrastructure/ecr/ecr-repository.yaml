@@ -6,5 +6,14 @@ Resources:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName:${env:repository_name}
+      
       # this shoulld be named whatever we want to name it
       # and it should be dynamic from above 
+      
+# This CloudFormation template creates an Amazon Elastic Container Registry (ECR) repository with the name specified in the 
+# environment variable repository_name. 
+# The ECR repository allows you to store and manage Docker container images.
+# The MyECRepository resource is defined using the AWS::ECR::Repository type, and it has a single property called 
+# RepositoryName which is set to the value of the repository_name environment variable.
+# This resource would be used to create a new ECR repository or update an existing one with a new name,
+# depending on the value of repository_name.
