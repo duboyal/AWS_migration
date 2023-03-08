@@ -37,7 +37,7 @@
 
 ```
 
-#### disclaimer : testing was limited for this pipeline and is mainly just an overall big picture of a potentially deployable self contained infrastructure as code , even the dockerfile and container registry is mocked up in theory to be pushed as IaC yaml , by potentially terraform/serverless framework etc. I have deployed similar stacks - using AWS CloudFormation or AWS CDK to deploy the infrastructure in a test environment first, and then gradually adding more resources as I go.
+#### deployable self contained infrastructure as code , even the dockerfile and container registry is mocked up in theory to be pushed as IaC yaml , by potentially terraform/serverless framework etc. I have deployed similar stacks - using AWS CloudFormation or AWS CDK to deploy the infrastructure in a test environment first, and then gradually adding more resources as I go.
 
 #### Network: 
 In the network infrastructure, having two public subnets and two private subnets allows for high availability and fault tolerance of resources that are deployed in the VPC.
