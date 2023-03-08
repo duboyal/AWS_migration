@@ -65,6 +65,7 @@ Resources:
 
 #------------------------
   
+# old variables to play with:
 # region: us-west-2
 # ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
 #docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
