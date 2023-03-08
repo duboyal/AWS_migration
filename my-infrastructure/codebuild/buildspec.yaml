@@ -22,5 +22,22 @@ phases:
       - echo Pushing the Docker image to Amazon ECR...
       - docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
       - docker push ${env:ecr_repository_uri}
+      
+      
+# This YAML file is a buildspec file for AWS CodeBuild, which is used to build and deploy 
+
+# container images to Amazon Elastic Container Registry (ECR). It defines the build phases and commands for the CodeBuild project.
+
+# The env section defines environment variables used in the build process, such as the name of the Docker image to be built, the region where the ECR repository is located, and the URI of the ECR repository.
+
+# The phases section defines the build phases for the CodeBuild project, which are pre_build, build, and post_build.
+
+# The pre_build phase runs before the build phase, and is used to set up the build environment, such as logging in to the ECR registry.
+
+# The build phase is where the actual Docker image is built using the Dockerfile in the project root directory.
+
+# The post_build phase is run after the build phase, and is used to push the Docker image to ECR. This is done by tagging the image with the ECR repository URI and pushing it to ECR.
+
+# Overall, this buildspec file defines the steps needed to build a Docker image and push it to ECR, which can then be used in other parts of the infrastructure, such as ECS or Fargate.
 
 
