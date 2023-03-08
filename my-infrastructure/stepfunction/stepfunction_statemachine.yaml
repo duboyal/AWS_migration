@@ -49,6 +49,11 @@ Resources:
 
 # "Resource": {"Fn::GetAtt": ["MyFargateTask", "Arn"]}: This specifies the ARN of the Fargate task that this state executes.
 
+# The MyFargateTask value in the Fn::GetAtt function represents the logical ID of your Fargate task resource, 
+# which should match the name of the resource defined in your fargate.yml file.
+# the Resource property in the ProcessData state of your Step Function state machine YAML file 
+# is referencing a Fargate task that is defined in the fargate.yml file in your my-infrastructure folder.
+
 # "UploadDataToS3": This is the name of the third and final state in the state machine.
 
 # "Resource": "arn:aws:states:::s3:putObject": This specifies the ARN of the S3 putObject API that this state executes.
