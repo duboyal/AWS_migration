@@ -108,7 +108,7 @@ Run sls deploy in your terminal to deploy your service to AWS.
 
 Note that this assumes that you have already set up the necessary dependencies, such as Docker and AWS CLI, on your local machine.
 
-#--more generally
+###### more generally
 
 Install the Serverless Framework: Install the Serverless Framework on your local machine or on your deployment server, following the installation instructions for your platform.
 
