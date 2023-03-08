@@ -41,7 +41,8 @@
 ## Steps in Pipeline:
 1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
 2. [Event on S3 bucket](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/datasync/datasync-task.yaml) to trigger [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/datasync/datasync-task.yaml)
-3. step function state machine launches fargate task (python data-processing code is on the docker container used for fargate task - we have IaC to create/launch this ecr/container from scratch via [buildspec.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/buildspec.yaml) and [codebuild-project.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/codebuild-project.yaml)
+
+3. [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/stepfunction/stepfunction_statemachine.yaml) launches fargate task (python data-processing code is on the docker container used for fargate task - we have IaC to create/launch this ecr/container from scratch via [buildspec.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/buildspec.yaml) and [codebuild-project.yaml](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/codebuild/codebuild-project.yaml)
 4. fargate task proccesses and updates data and saves induvidual parquet files in "Transformed" S3 Bucket
 5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables from each parquet file. schema meta data is saved 
 
