@@ -1,23 +1,22 @@
-# In serverless.yml , the resources section references the individual YAML files that define your infrastructure components, 
-# using the ${file()} syntax to include them in the deployment. You would need to update the file paths and names to match your actual file structure.
-
-# You can also define any necessary environment variables, deployment options, and Serverless Framework plugins or settings in the provider 
-# and plugins sections of the file.
-
-
 service: my-aws-service
 provider:
   name: aws
   runtime: python3.8
   region: us-east-1
   stage: dev
-  stackName: my-aws-service   # we would deploy this stack within a secure VPC
+  stackName: my-aws-service   # we would deploy this stack within a secure VPC, that is also created w/ vpc.yml
   environment:
     # Define any environment variables here
     DEBUG: "false"
 
 # Define the AWS resources used by your infrastructure
 resources:
+  # Add the following lines to reference the network templates
+  - ${file(./my-infrastructure/network/vpc.yaml)}
+  - ${file(./my-infrastructure/network/subnet.yaml)}
+  - ${file(./my-infrastructure/network/security-group.yaml)}
+  - ${file(./my-infrastructure/network/nat-gateway.yaml)}
+  - ${file(./my-infrastructure/network/internet-gateway.yaml)}
   - ${file(./my-infrastructure/ecr/ecr-repository.yml)}
   - ${file(./my-infrastructure/ecs/ecs-cluster.yml)}
   - ${file(./my-infrastructure/fargatetask/fargate-task.yml)}
