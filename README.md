@@ -32,7 +32,7 @@
 │   │   ├── nat-gateway.yaml
 │   │   └── internet-gateway.yaml
 │   ├── serverless.yaml
-│   └── main.yaml
+│   └── package.json
 
 ```
 
