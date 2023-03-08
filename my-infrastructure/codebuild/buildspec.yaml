@@ -1,3 +1,4 @@
+# NOTE: build spec builds the docker image instead of us needing to have the docker image already on an ecr in the cloud
 
 version: 0.2
 
