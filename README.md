@@ -36,4 +36,20 @@ I am also - for a project like this - interested into looking at AWS Batch that 
 Data sync would require the installation of a "data sync agent" on the source machine and have access to the destination s3 bucket through VPN or make your bucket public but it is more secure to configure the allowed traffic into the bucket through VPN
 [https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html]
 
+## the "Serverless Framework" as an IaaC tool:
 
+The Serverless Framework is a popular open-source tool that supports multiple cloud platforms and languages, and allows you to define your infrastructure using YAML or JSON files.
+
+To use the Serverless Framework with your YAML files, you would typically follow these steps:
+
+Install the Serverless Framework: Install the Serverless Framework on your local machine or on your deployment server, following the installation instructions for your platform.
+
+Configure your Serverless project: Create a new Serverless project, or configure an existing project to work with your YAML files. This involves setting up your project structure, defining your AWS account credentials, and specifying any necessary plugins or dependencies.
+
+Write your Serverless YAML files: Create your YAML files that define your infrastructure components, such as your serverless functions, event triggers, and associated resources. Each YAML file should contain the necessary configuration settings for the component you want to deploy.
+
+Define your Serverless deployment: Write a Serverless deployment script that specifies how to deploy your infrastructure components using the Serverless Framework. This script should reference your individual YAML files and specify any necessary deployment options or variables.
+
+Deploy your infrastructure: Run your Serverless deployment script using the Serverless Framework. This will read in your individual YAML files and deploy your infrastructure components to your AWS account.
+
+By following these steps, you can use the Serverless Framework to deploy your YAML files containing infrastructure as code, while also taking advantage of the tool's other features and benefits.
