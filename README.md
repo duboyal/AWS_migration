@@ -78,6 +78,25 @@ The Serverless Framework is a popular open-source tool that supports multiple cl
 
 To use the Serverless Framework with your YAML files, you would typically follow these steps:
 
+#
+To deploy this with Serverless Framework, you would need to do the following:
+
+Install the Serverless Framework CLI by running npm install -g serverless in your terminal.
+
+Set up your AWS credentials in your terminal using the aws configure command. This will allow the Serverless Framework to access your AWS account.
+
+Create a new Serverless service by running serverless create --template aws-python3 --path my-service in your terminal. This will create a new Serverless service with a basic serverless.yml file.
+
+Copy the contents of your infrastructure YAML files into your serverless.yml file, replacing the existing resources section.
+
+Update your serverless.yml file to include any necessary environment variables, deployment options, and Serverless Framework plugins or settings in the provider and plugins sections.
+
+Run sls deploy in your terminal to deploy your service to AWS.
+
+Note that this assumes that you have already set up the necessary dependencies, such as Docker and AWS CLI, on your local machine.
+
+#--more generally
+
 Install the Serverless Framework: Install the Serverless Framework on your local machine or on your deployment server, following the installation instructions for your platform.
 
 Configure your Serverless project: Create a new Serverless project, or configure an existing project to work with your YAML files. This involves setting up your project structure, defining your AWS account credentials, and specifying any necessary plugins or dependencies.
