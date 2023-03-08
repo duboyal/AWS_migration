@@ -6,10 +6,7 @@ env:
   docker_filepath  : "codebuild/Dockerfile"
   environment_type  : "LINUX_CONTAINER"
   environment_image  : "aws/codebuild/docker:18.09"
-  
-  # region: us-west-2
-  # ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
-  #docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
+
 
 
 Resources:
@@ -65,3 +62,9 @@ Resources:
 # and the Environment property specifies the type of environment to use for the build.
 
 # The ServiceRole property references a service role that defines the permissions that the project has to access other AWS resources.
+
+#------------------------
+  
+# region: us-west-2
+# ecr_repository_uri: <YOUR_ECR_REPOSITORY_URI> #will have to be real repo uri
+#docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
