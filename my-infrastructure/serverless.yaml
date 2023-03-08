@@ -8,6 +8,8 @@ provider:
   environment:
     # Define any environment variables here
     DEBUG: "false"
+    AWS_VAR_1: MY_VAR
+    AWS_VAR_1: ANOTHER_VAR
 
 # Define the AWS resources used by your infrastructure
 resources:
