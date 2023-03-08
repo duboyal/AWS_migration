@@ -1,4 +1,4 @@
-# AWS migration including VPC
+# Provisioning self contained AWS migration including VPC
 ```
 ├── my-infrastructure
 │   ├── codebuild
