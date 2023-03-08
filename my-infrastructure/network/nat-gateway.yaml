@@ -20,9 +20,17 @@ Resources:
           Value: "my-nat-gateway"
 
 
-# In the context of your data processing pipeline, you might use a NAT Gateway to allow resources in a private subnet to access external resources, such as downloading or uploading data from external APIs or services.
+# In the context of this data processing pipeline, you might use a NAT Gateway to allow resources in a private subnet to access external resources, 
+# such as downloading or uploading data from external APIs or services.
+# ------ 
+# in this pipeline, a NAT Gateway will be used in conjunction with private subnets to allow outbound internet access for resources within the subnet. 
+# For example, if you have an ECS cluster running in a private subnet that needs to communicate with resources outside of the VPC, it can use a
 
-# For example, you might use AWS DataSync to transfer data between an external data source, such as an SFTP server, and a private subnet in your VPC. The NAT Gateway would allow the DataSync agent in the private subnet to connect to the external data source, while preventing the data source from initiating a connection to the private subnet.
+# NAT Gateway to do so. The NAT Gateway will provide a public IP address for resources in the private subnet, allowing them to access 
+# the internet and other resources outside of the VPC.
+
+# For example, you might use AWS DataSync to transfer data between an external data source, such as an SFTP server, and a private
+# subnet in your VPC. The NAT Gateway would allow the DataSync agent in the private subnet to connect to the external data source, while preventing the data source from initiating a connection to the private subnet.
 
 # create a NAT Gateway resource in your VPC infrastructure:
 
