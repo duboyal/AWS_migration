@@ -5,7 +5,7 @@
 
 ## Steps in Pipeline:
 1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
-2. Event on S3 bucket to trigger step function state machine
+2. [Event on S3 bucket](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/datasync/datasync-task.yaml) to trigger [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/datasync/datasync-task.yaml)
 3. step function state machine launches fargate task (python data-processing code is on container used for fargate task and we have IaC to create this container)
 4. fargate task proccesses and updates data and saves induvidual parquet files in "Transformed" S3 Bucket
 5. Glue Service (ran on a cron job or ran manually) crawls transformed bucket and creates appropriate athena tables from each parquet file. schema meta data is saved 
@@ -53,3 +53,16 @@ Define your Serverless deployment: Write a Serverless deployment script that spe
 Deploy your infrastructure: Run your Serverless deployment script using the Serverless Framework. This will read in your individual YAML files and deploy your infrastructure components to your AWS account.
 
 By following these steps, you can use the Serverless Framework to deploy your YAML files containing infrastructure as code, while also taking advantage of the tool's other features and benefits.
+
+# VPC network design :
+Based on the steps you described in your pipeline, here's what your VPC, network, and gateways might look like:
+
+1) VPC: You would need a VPC to isolate your resources and create a private network for your data processing pipeline. This VPC should have at least two private subnets and two public subnets (for Fargate and Glue), and it should be configured with appropriate network ACLs and security groups to control traffic to and from your resources. You may also need to configure a VPC endpoint for S3 to allow your resources to access the "Raw" and "Transformed" S3 buckets without going over the public internet.
+
+2) Internet Gateway: To allow your resources in the public subnets to access the internet, you would need to attach an Internet Gateway to your VPC. This would allow you to route traffic from your public subnets to the internet and back.
+
+3) NAT Gateway: To allow your resources in the private subnets to access the internet (for example, to download packages or updates), you would need to set up a NAT Gateway in your public subnets. This would allow your resources to send traffic to the internet through the NAT Gateway, which would then translate the traffic and send it back to your resources.
+
+4) Route Tables: You would need to configure your VPC with appropriate route tables to direct traffic between your subnets and gateways. For example, you would need to route traffic from your private subnets to the NAT Gateway and traffic from your public subnets to the Internet Gateway.
+
+Overall, your VPC, network, and gateways would need to be designed to support the traffic flow and security requirements of your data processing pipeline. The specific configuration would depend on the size and complexity of your pipeline, as well as any additional requirements you may have for security, compliance, or performance.
