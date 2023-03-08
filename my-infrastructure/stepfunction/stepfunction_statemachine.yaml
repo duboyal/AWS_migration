@@ -9,12 +9,12 @@ Resources:
             "DownloadDataFromS3": {
               "Type": "Task",
               "Resource": "arn:aws:states:::s3:getObject",
-              "End": true
+              "Next": "ProcessData"
             },
             "ProcessData": {
               "Type": "Task",
               "Resource": {"Fn::GetAtt": ["MyFargateTask", "Arn"]},
-              "End": true
+              "Next": "UploadDataToS3"
             },
             "UploadDataToS3": {
               "Type": "Task",
@@ -40,9 +40,10 @@ Resources:
 
 # "Type": "Task": This specifies that this state is a Task state.
 
+# ---IMPORTANT
 # "Resource": "arn:aws:states:::s3:getObject": This specifies the Amazon Resource Name (ARN) of the S3 getObject API that this state executes.
 
-# "End": true: This specifies that this is the final state in the state machine.
+# "Next": "ProcessData": This specifies next step in state machine.
 
 # "ProcessData": This is the name of the second state in the state machine.
 
