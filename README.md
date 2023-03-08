@@ -74,6 +74,17 @@ I am also - for a project like this - interested into looking at AWS Batch that 
 Data sync would require the installation of a "data sync agent" on the source machine and have access to the destination s3 bucket through VPN or make your bucket public but it is more secure to configure the allowed traffic into the bucket through VPN
 [https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html]
 
+To run a data sync agent on a schedule, you can use a cron job on an EC2 instance or a serverless compute service like AWS Lambda.
+
+Here are the general steps to follow:
+
+Create an EC2 instance or a Lambda function (or on-prem location where data exists in our situation)
+Install the data sync agent on the EC2 instance or as a layer on the Lambda function.
+Create an S3 bucket to receive the data sync agent output.
+Create a cron job to trigger the data sync agent to run on a schedule. The cron job can be configured to call a script or an AWS CLI command that runs the data sync agent.
+Configure the data sync agent to write its output to the S3 bucket.
+You can use CloudFormation templates to define the resources needed for this setup and manage them as a stack. Alternatively, you can use a tool like Serverless Framework to deploy and manage the resources as a serverless application.
+
 ## the "Serverless Framework" as an IaaC tool:
 
 The Serverless Framework is a popular open-source tool that supports multiple cloud platforms and languages, and allows you to define your infrastructure using YAML or JSON files.
