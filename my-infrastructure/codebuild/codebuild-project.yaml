@@ -29,10 +29,23 @@ Resources:
       ServiceRole: !Ref CodeBuildServiceRole
       # ServiceRole: !GetAtt CodeBuildServiceRole.Arn #from ServiceRole: !Ref CodeBuildServiceRole
 
-
+#-------
 # This YAML file is a CloudFormation template for creating an AWS CodeBuild project. 
 # CodeBuild is a fully managed build service that compiles source code, runs tests, and 
 # produces software packages that are ready to deploy.
+
+# A build spec is a YAML file that is used to define the build and deployment stages of your CodeBuild project. 
+# It specifies the commands that are run during the build process, such as installing dependencies, 
+# building and testing your code, and deploying the application.
+
+# In the context of creating an ECR repository along with a Docker image, the build spec file can be used to 
+# define the build process for the Docker image. This might include specifying the Dockerfile to use, any dependencies 
+# required by the Docker image, and any additional build steps needed to create the image. Once the Docker image is built, 
+# the build spec file can also be used to push the image to the ECR repository.
+
+# By defining the build process in a build spec file, you can automate the build and deployment process for your 
+# Docker images and ensure that the process is consistent and repeatable.
+#-------
 
 # In this file, the env section defines environment variables that can be used in other parts of the file. 
 # For example, image_name sets the name of the Docker image that will be built.
