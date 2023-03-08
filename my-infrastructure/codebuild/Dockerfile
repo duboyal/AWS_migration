@@ -22,4 +22,13 @@ CMD ["python3", "main.py"]
 
 # ----
 
+# ENV AWS_ACCESS_KEY_ID=your_aws_access_key_id
+# ENV AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
 
+# those lines are typically not added directly in the Dockerfile. Instead, the credentials or 
+# AWS configuration should be passed to the container at runtime, for example via environment variables 
+# or using an external secrets manager. This ensures that the sensitive information is not hardcoded in 
+# the Dockerfile or the container image itself, which can be a security risk.
+
+# If you are using an AWS service to run your container, such as ECS or EKS, you can also use IAM roles to 
+# grant the necessary permissions to your containers without having to pass in AWS credentials directly.
