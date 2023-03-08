@@ -31,6 +31,14 @@ Resources:
       Tags:
         - Key: Name
           Value: "my-private-subnet-b"
+          
+          
+# private subnets can access the internet through a NAT gateway. In order to do so, the NAT gateway needs to be 
+# deployed in a public subnet, and the private subnets must be configured to route outbound traffic through the NAT gateway. 
+# This allows resources in the private subnets to access the internet and communicate with services outside of the VPC while 
+# still maintaining 
+# a higher level of security compared to resources deployed in the public subnets.
+
 
   MyPublicSubnetA:
     Type: AWS::EC2::Subnet
@@ -53,6 +61,8 @@ Resources:
       Tags:
         - Key: Name
           Value: "my-public-subnet-b"
+          
+
 
 # when you create a VPC and its associated subnets, you can control network access and communication between resources within the VPC. 
 # This includes resources that use AWS DataSync to transfer data to and from your VPC.
