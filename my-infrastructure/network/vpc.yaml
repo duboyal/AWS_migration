@@ -1,0 +1,55 @@
+
+Resources:
+  #This resource block creates a VPC in your AWS account with a CIDR block of 10.0.0.0/16. The Tags property adds a tag to the VPC for easier identification.
+  MyVpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+      Tags:
+        - Key: Name
+          Value: "my-vpc"
+
+  #These two resource blocks enable DNS resolution and support for your VPC. 
+  #The VpcDnsResolution block enables an Amazon-provided IPv6 CIDR block for your VPC, 
+  #while the VpcDnsSupport block enables DNS support and hostnames for your VPC.
+
+  VpcDnsResolution:
+    Type: AWS::EC2::VPCCidrBlock
+    Properties:
+      VpcId: !Ref MyVpc
+      AmazonProvidedIpv6CidrBlock: true
+
+  VpcDnsSupport:
+    Type: AWS::EC2::VPC
+    Properties:
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      VpcId: !Ref MyVpc
+
+#These two resource blocks create an internet gateway and attach it to your VPC. The MyInternetGateway block creates an internet gateway and adds a tag for easier identification. 
+#The MyVpcGatewayAttachment block attaches the internet gateway to your VPC.
+# By creating an internet gateway and attaching it to your VPC, you can provide internet access to resources within your VPC.
+
+  MyInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: "my-internet-gateway"
+
+  MyVpcGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MyVpc
+      InternetGatewayId: !Ref MyInternetGateway
+
+
+# NOTE !!! 
+
+# in order to use AWS DataSync to transfer data from your local computer to the S3 bucket within your VPC, 
+# you will need to allow inbound traffic to your VPC from your local computer's IP address.
+
+# You can do this by creating a security group rule that allows inbound traffic on port 22 (SSH) from your local IP address. 
+# This will allow you to establish an SSH connection to your instances within your VPC, which is required for AWS DataSync to transfer data to your S3 bucket.
+
+# Here's an example CloudFormation template for a security group that allows inbound traffic on port 22 from a specific IP address:

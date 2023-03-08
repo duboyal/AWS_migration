@@ -1,0 +1,65 @@
+# When you create a VPC, it's common to create subnets in multiple availability zones for high availability and fault tolerance.
+
+# Public subnets are typically used for resources that need to be publicly accessible from the internet, such as web servers or APIs. Private subnets, 
+# on the other hand, are used for resources that don't need to be publicly accessible, such as databases or internal services.
+
+# In the context of a data processing pipeline like the one you described, you might use public subnets for resources that need to be publicly accessible, 
+# such as an AWS DataSync agent or an ECS service that exposes an API. Private subnets might be used for resources that don't need to be publicly accessible,
+# such as an ECS cluster that runs data processing tasks or a database that stores processed data.
+
+# Using multiple availability zones and subnets can also help to ensure that your application remains available in the event of an outage or failure in a single 
+# availability zone or subnet. By distributing your resources across multiple availability zones, you can ensure that your application remains 
+# accessible even if one zone becomes unavailable.
+
+Resources:
+  MyPrivateSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: "10.0.1.0/24"
+      VpcId: !Ref MyVpc
+      Tags:
+        - Key: Name
+          Value: "my-private-subnet-a"
+
+  MyPrivateSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: "10.0.2.0/24"
+      VpcId: !Ref MyVpc
+      Tags:
+        - Key: Name
+          Value: "my-private-subnet-b"
+
+  MyPublicSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1a"
+      CidrBlock: "10.0.3.0/24"
+      VpcId: !Ref MyVpc
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: "my-public-subnet-a"
+
+  MyPublicSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: "us-east-1b"
+      CidrBlock: "10.0.4.0/24"
+      VpcId: !Ref MyVpc
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: "my-public-subnet-b"
+
+# when you create a VPC and its associated subnets, you can control network access and communication between resources within the VPC. 
+# This includes resources that use AWS DataSync to transfer data to and from your VPC.
+
+# For example, you can use security groups to control access to DataSync agents that are deployed within your VPC, 
+# or to restrict traffic to and from specific subnets or network interfaces. You can also use Network ACLs (Access Control Lists) to 
+# control traffic between subnets within your VPC.
+
+# In general, setting up a secure and well-designed VPC infrastructure can help to ensure the reliability, 
+# scalability, and security of your data transfer operations with AWS DataSync.

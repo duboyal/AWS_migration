@@ -1,0 +1,25 @@
+Resources:
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: "my-security-group"
+      GroupDescription: "My security group for my VPC"
+      VpcId: !Ref MyVpc
+      Tags:
+        - Key: Name
+          Value: "my-security-group"
+
+  MySecurityGroupIngressRule:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref MySecurityGroup
+      IpProtocol: tcp
+      FromPort: 22
+      ToPort: 22
+      CidrIp: <YOUR_LOCAL_IP_ADDRESS>/32
+
+
+# Replace <YOUR_LOCAL_IP_ADDRESS> with the IP address of your local computer. This will allow 
+# inbound traffic on port 22 (SSH) from your local computer to your instances within your VPC.
+# Note that the SourceSecurityGroupId property is replaced with CidrIp to allow traffic from a 
+# specific IP address, rather than another security group.
