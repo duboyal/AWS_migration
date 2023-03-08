@@ -12,6 +12,11 @@ env:
 #docker tag ${env:image_name}:latest ${env:ecr_repository_uri}
 
 Resources:
+  MyECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: my-ecr-repository
+
   CodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties:
@@ -26,6 +31,8 @@ Resources:
         EnvironmentVariables:
           - Name: "DOCKERFILE_PATH"
             Value: ${env:docker_filepath} # corresponds to path from final yaml template (global bc codefile)
+          - Name: ECR_REPOSITORY_URI
+            Value: !Join ['', [!Ref MyECRRepository, '.dkr.ecr.', !Ref 'AWS::Region', '.amazonaws.com/', !Ref MyECRRepository]]
       ServiceRole: !Ref CodeBuildServiceRole
       # ServiceRole: !GetAtt CodeBuildServiceRole.Arn #from ServiceRole: !Ref CodeBuildServiceRole
 
