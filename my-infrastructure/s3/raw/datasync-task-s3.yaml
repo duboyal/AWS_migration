@@ -48,9 +48,21 @@ Resources:   #s3 bucket that takes in data sync
 
 
 
-# i need this to reference aws s3
-# this one needs a lot of revamp !!
-#because i want it to  be able to update!!
-# maybe newer files arent ignored 
-# and each row should have metadata i think like added or edited !
-# or else i need to reload parquet file
+
+
+# define a CloudFormation resource for an AWS DataSync task that transfers data from a source SMB server to an S3 bucket. Here's an overview of the main sections of the file:
+
+# env: This section defines environment variables that can be referenced elsewhere in the CloudFormation stack. These variables specify the source SMB server credentials, S3 destination URI, and name of the S3 bucket where the raw data will be synced.
+
+# Resources: This section defines the CloudFormation resources for the AWS DataSync task, the source SMB server, and the destination S3 bucket.
+
+# The RawS3Bucket resource defines an S3 bucket for storing the raw data synced from the SMB server.
+
+# The RawS3BucketEvent resource defines a notification configuration that triggers a Step Function state machine when new objects are created in the RawS3Bucket bucket.
+
+# The DataSyncTask resource defines the AWS DataSync task that transfers data from the source SMB server to the RawS3Bucket S3 bucket. The Sources section specifies the URI of the source SMB server and the credentials for accessing it. The Destinations section specifies the URI of the S3 bucket and the S3 configuration for the destination bucket, including the BucketAccessRoleArn property that grants permission to write to the bucket.
+
+# Note that the VerifyMode and OverwriteMode properties specify how AWS DataSync should handle conflicts between files in the source and destination. The PreserveDeletedFiles and PreserveAttributes properties specify additional options for how AWS DataSync should handle data transfer.
+
+#  datasync-task-s3.yml  defines a basic infrastructure for syncing data from an SMB server to an S3 bucket using AWS DataSync. You would need to customize this file for your specific use case, such as specifying the source SMB server credentials and the S3 bucket name and URI.
+
