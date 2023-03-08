@@ -1,5 +1,40 @@
 # AWS migration 
+```
+├── my-infrastructure
+│   ├── codebuild
+│   │   ├── Dockerfile
+│   │   ├── buildspec.yaml
+│   │   ├── codebuild-project.yaml
+│   │   ├── requirements.txt
+│   │   ├── table_module.py
+│   │   └── main.py
+│   ├── ecr
+│   │   └── ecr-repository.yaml
+│   ├── ecs
+│   │   └── ecs-cluster.yaml
+│   ├── fargatetask
+│   │   └── fargate-task.yaml
+│   ├── iam-roles
+│   │   ├── codebuild-role.yaml
+│   │   ├── ecs-task-role.yaml
+│   │   ├── glue-crawler-role.yaml
+│   │   ├── s3-access-role.yaml
+│   │   └── step-functions-role.yaml
+│   ├── s3
+│   │   ├── datasync-task.yaml
+│   │   └── glue-crawler-s3.yaml
+│   ├── stepfunction
+│   │   └── stepfunction_statemachine.yaml
+│   ├── network
+│   │   ├── vpc.yaml
+│   │   ├── subnet.yaml
+│   │   ├── security-group.yaml
+│   │   ├── nat-gateway.yaml
+│   │   └── internet-gateway.yaml
+│   ├── serverless.yaml
+│   └── main.yaml
 
+```
 
 #### disclaimer : testing was limited for this pipeline and is mainly just an overall big picture of a potentially deployable self contained infrastructure as code , even the dockerfile and container registry is mocked up in theory to be pushed as IaC yaml , by potentially terraform/serverless framework etc.
 
