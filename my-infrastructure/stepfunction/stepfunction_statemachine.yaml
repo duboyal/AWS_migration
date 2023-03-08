@@ -23,3 +23,35 @@ Resources:
             }
           }
         }
+
+# Resources:: This is the top-level section of the CloudFormation template that defines the AWS resources for the state machine.
+
+# MyStepFunctionsStateMachine: This is the name of the Step Function state machine resource.
+
+# Type: AWS::StepFunctions::StateMachine: This specifies that this resource is a Step Function state machine.
+
+# Properties:: This is the section that specifies the properties of the Step Function state machine.
+
+# DefinitionString: !Sub |: This specifies the JSON definition for the state machine, using a CloudFormation intrinsic function !Sub to substitute variables in the JSON string.
+
+# StartAt: "DownloadDataFromS3": This specifies the starting state of the state machine.
+
+# "DownloadDataFromS3": This is the name of the first state in the state machine.
+
+# "Type": "Task": This specifies that this state is a Task state.
+
+# "Resource": "arn:aws:states:::s3:getObject": This specifies the Amazon Resource Name (ARN) of the S3 getObject API that this state executes.
+
+# "End": true: This specifies that this is the final state in the state machine.
+
+# "ProcessData": This is the name of the second state in the state machine.
+
+# "Resource": {"Fn::GetAtt": ["MyFargateTask", "Arn"]}: This specifies the ARN of the Fargate task that this state executes.
+
+# "UploadDataToS3": This is the name of the third and final state in the state machine.
+
+# "Resource": "arn:aws:states:::s3:putObject": This specifies the ARN of the S3 putObject API that this state executes.
+
+# Overall the Step Function state machine YAML file defines a simple state machine that downloads data from an S3 bucket, processes the data using a Fargate task, and uploads the processed data back to another S3 bucket.
+
+
