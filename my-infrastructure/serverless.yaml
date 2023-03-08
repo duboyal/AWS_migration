@@ -1,0 +1,30 @@
+service: my-aws-service
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+  stage: dev
+  stackName: my-aws-service   # we would deploy this stack within a secure VPC
+  environment:
+    # Define any environment variables here
+    DEBUG: "false"
+
+# Define the AWS resources used by your infrastructure
+resources:
+  - ${file(./my-infrastructure/ecr/ecr-repository.yml)}
+  - ${file(./my-infrastructure/ecs/ecs-cluster.yml)}
+  - ${file(./my-infrastructure/fargatetask/fargate-task.yml)}
+  - ${file(./my-infrastructure/iam-roles/codebuild-role.yml)}
+  - ${file(./my-infrastructure/iam-roles/ecs-task-role.yml)}
+  - ${file(./my-infrastructure/iam-roles/glue-crawler-role.yml)}
+  - ${file(./my-infrastructure/iam-roles/s3-access-role.yml)}
+  - ${file(./my-infrastructure/iam-roles/step-functions-role.yml)}
+  - ${file(./my-infrastructure/s3/datasync-task.yml)}
+  - ${file(./my-infrastructure/s3/glue-crawler-s3.yml)}
+  - ${file(./my-infrastructure/stepfunction/stepfunction_statemachine.yml)}
+
+# Define any Serverless Framework plugins or custom settings here
+plugins:
+  - serverless-pseudo-parameters
+
+# Define any other deployment options or settings here
