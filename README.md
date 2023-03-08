@@ -38,6 +38,13 @@
 
 #### disclaimer : testing was limited for this pipeline and is mainly just an overall big picture of a potentially deployable self contained infrastructure as code , even the dockerfile and container registry is mocked up in theory to be pushed as IaC yaml , by potentially terraform/serverless framework etc. I have deployed similar stacks - using AWS CloudFormation or AWS CDK to deploy the infrastructure in a test environment first, and then gradually adding more resources as I go.
 
+#### Network: 
+In the network infrastructure, having two public subnets and two private subnets allows for high availability and fault tolerance of resources that are deployed in the VPC.
+
+The public subnets are used to host resources that need to be publicly accessible, such as load balancers or public-facing web servers. The private subnets, on the other hand, are used to host resources that do not need to be publicly accessible, such as databases or application servers.
+
+Having two subnets in each category provides redundancy and ensures that resources can continue to function even if one of the subnets or availability zones goes down. Additionally, separating the resources into different subnets can help to improve security by isolating resources with different security requirements from each other.
+
 ## Steps in Pipeline:
 #### 1. [AWS Data Sync to "Raw" S3 Bucket](README.md#DataSync)
 #### 2. [Event on S3 bucket](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/s3/raw/datasync-task-s3.yaml) to trigger [step function state machine](https://github.com/duboyal/AWS_migration/blob/main/my-infrastructure/stepfunction/stepfunction_statemachine.yaml) 
