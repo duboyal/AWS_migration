@@ -13,7 +13,7 @@ Resources:
             },
             "ProcessData": {
               "Type": "Task",
-              "Resource": {"Fn::GetAtt": ["MyFargateTask", "Arn"]},
+              "Resource": {"Fn::GetAtt": ["MyFargateTask", "Arn"]},  # should match the name of the resource defined in the fargate.yml file.
               "Next": "UploadDataToS3"
             },
             "UploadDataToS3": {
