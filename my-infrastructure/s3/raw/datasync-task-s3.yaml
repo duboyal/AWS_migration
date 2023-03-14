@@ -12,7 +12,7 @@ Resources:   #s3 bucket that takes in data sync
   RawS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: ${env:raw_bucket}  
+      BucketName: ${env:raw_bucket_name}  
 
   RawS3BucketEvent:
     Type: AWS::S3::BucketEvent
