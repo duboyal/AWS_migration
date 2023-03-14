@@ -2,7 +2,7 @@ env:
   UserName: 'source-username'
   Password: 'source-username'
   DestUri : 's3://my-bucket/destination-folder' 
-  raw_bucket_name : raw_bucket
+  raw_bucket : raw_bucket
 
 AWSTemplateFormatVersion: '2010-09-09'
 
@@ -12,7 +12,7 @@ Resources:   #s3 bucket that takes in data sync
   RawS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: ${env:raw_bucket_name}  
+      BucketName: ${env:raw_bucket}  
 
   RawS3BucketEvent:
     Type: AWS::S3::BucketEvent
