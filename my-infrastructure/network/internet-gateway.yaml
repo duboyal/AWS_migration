@@ -28,3 +28,14 @@ Outputs:
 
 # Overall, this YAML file can be used to easily create an Internet Gateway resource that can be used to provide access 
 # to and from your VPC.
+
+#--------ROUTE TABLE
+# An Internet Gateway (IGW) is used to allow resources within your VPC to access the internet, or to allow the internet to access resources within 
+# your VPC. In order to enable access to the internet, an IGW must be attached to a VPC.
+
+# An IGW cannot be directly attached to any other resources, only to a VPC. However, once an IGW is attached to a VPC, you can set up routing 
+# to direct traffic to and from the internet through the IGW.
+
+# For example, you can create a route table and configure the routes to direct traffic to the IGW. You can associate the route table with one
+# or more subnets in your VPC. When a resource in the subnet sends traffic to the internet, the route table will direct 
+# that traffic to the IGW.
