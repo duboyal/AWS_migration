@@ -3,6 +3,12 @@ Resources:
     Type: AWS::EC2::InternetGateway
     Properties: {}
 
+  MyVPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MyVpc
+      InternetGatewayId: !Ref MyInternetGateway
+
 Outputs:
   MyInternetGatewayId:
     Value: !Ref MyInternetGateway
