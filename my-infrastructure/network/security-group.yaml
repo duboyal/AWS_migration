@@ -23,3 +23,7 @@ Resources:
 # inbound traffic on port 22 (SSH) from your local computer to your instances within your VPC.
 # Note that the SourceSecurityGroupId property is replaced with CidrIp to allow traffic from a 
 # specific IP address, rather than another security group.
+
+# If your IP address is not static, you can use a dynamic DNS service to assign a domain name to
+# your IP address. Then, you can use the domain name instead of the IP address in the CidrIp field
+# of the security group rule. Many dynamic DNS services are available online, some of which are free.
