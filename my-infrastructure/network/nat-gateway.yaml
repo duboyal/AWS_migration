@@ -16,10 +16,15 @@
 
 
 Resources:
+  MyEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
   MyNatGateway:
     Type: AWS::EC2::NatGateway
     Properties:
-      AllocationId: <Allocation ID>
+      AllocationId: !GetAtt MyEIP.AllocationId
       SubnetId: <Private Subnet ID>
       Tags:
         - Key: Name
