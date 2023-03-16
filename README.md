@@ -132,7 +132,7 @@ Deploy your infrastructure: Run your Serverless deployment script using the Serv
 By following these steps, you can use the Serverless Framework to deploy your YAML files containing infrastructure as code, while also taking advantage of the tool's other features and benefits.
 
 # VPC network design :
-Based on the steps you described in your pipeline, here's what your VPC, network, and gateways might look like:
+Based on the pipeline, here's what the VPC, network, and gateways could look like:
 
 1) VPC: You would need a VPC to isolate your resources and create a private network for your data processing pipeline. This VPC should have at least two private subnets and two public subnets (for Fargate and Glue), and it should be configured with appropriate network ACLs and security groups to control traffic to and from your resources. You may also need to configure a VPC endpoint for S3 to allow your resources to access the "Raw" and "Transformed" S3 buckets without going over the public internet.
 
